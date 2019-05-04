@@ -39,10 +39,31 @@ function requestApi(URL) {
     });
 }
 
+function saveOnLS(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function retrieveFromLS(key) {
+  const infoSavedOnLS = parseInt(localStorage.getItem(key));
+  console.log(infoSavedOnLS);
+
+  if (infoSavedOnLS) {
+    NUMBER = infoSavedOnLS;
+    for (const element of inputsRadioEls) {
+      const elementNumber = parseInt(element.getAttribute('data-number'));
+      if (elementNumber === NUMBER) {
+        console.log(element);
+        element.setAttribute('checked', 'true');
+      }
+    }
+  }
+}
+
 //Handlers
 function handlerStartClick(event) {
   event.preventDefault();
   let userChoiceEl = '';
+
   //Get user election
   for (const element of inputsRadioEls) {
     element.checked ? (userChoiceEl = element) : '';
@@ -50,14 +71,16 @@ function handlerStartClick(event) {
   NUMBER = parseInt(userChoiceEl.getAttribute('data-number'));
 
   let URL = `https://raw.githubusercontent.com/Adalab/cards-data/master/${NUMBER}.json`;
-  console.log(NUMBER, URL);
 
+  saveOnLS('userChoice', NUMBER);
   requestApi(URL);
 }
 
-//Listeners
-btnStartEl.addEventListener('click', handlerStartClick);
-
 //Init
+function init() {
+  retrieveFromLS('userChoice');
+  btnStartEl.addEventListener('click', handlerStartClick);
+}
+init();
 
 //# sourceMappingURL=main.js.map
