@@ -5,7 +5,7 @@
 const inputsRadioEls = document.querySelectorAll('.number-cards__button');
 const btnStartEl = document.querySelector('.btn-start');
 const listResultsEl = document.querySelector('.app-results');
-const mainContainerEl = document.querySelector('.main-container');
+const appMessageEl = document.querySelector('.app-message');
 
 let NUMBER = '';
 let cardsFromAPI = [];
@@ -59,32 +59,31 @@ function handlerCardsClick(event) {
       cardsUp.push(card);
     }
   }
-  const cardsUpNow = NUMBER - cardsDown.length;
 
+  const cardsUpNow = NUMBER - cardsDown.length;
   const selectedCardPairId = parseInt(
     selectedCardFaceEl.getAttribute('data-pair')
   );
-  console.log(cardsUpNow);
+
   if (cardsUpNow === 1) {
     pairCards = [];
     pairCards[0] = selectedCardPairId;
+    appMessageEl.innerHTML = '';
     console.log(selectedCardPairId);
   } else if (cardsUpNow === 2) {
     pairCards[1] = selectedCardPairId;
     console.log('solo hay una carta boca arriba');
     if (pairCards[0] === pairCards[1]) {
       //Print message on HTML
-      const messageEl = document.createElement('p');
-      const messageText = document.createTextNode('EUREKA!!!');
-      messageEl.classList.add('eureka');
-      messageEl.appendChild(messageText);
-      mainContainerEl.appendChild(messageEl);
+      appMessageEl.innerHTML = 'EUREKA!!!';
+      appMessageEl.classList.add('eureka');
 
       // for (const card of cardsUp) {
       //   setInterval(card.classList.add('card--hidden'), 3000);
       // }
       console.dir(cardsDown);
     } else {
+      appMessageEl.innerHTML = '';
       console.log('no coinciden');
     }
   } else {
