@@ -14,13 +14,13 @@ ol {
 
 // General settings:
 body {
-  background-color: pink;
+  min-height: 100vh;
+  background-color: rgb(238, 238, 238);
+  color: black;
 
-  font-family: sans-serif;
+  font-family: $fontPrimary;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
-  color: black;
-  // Para que ocupe como mínimo el alto de mi pantalla
-  min-height: 100vh;
+  text-align: center;
 }
