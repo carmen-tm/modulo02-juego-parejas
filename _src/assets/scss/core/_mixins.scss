@@ -1,0 +1,9 @@
+// Ejemplo
+@mixin flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Lo aplico donde quiera así:
+@include flexCentered();
