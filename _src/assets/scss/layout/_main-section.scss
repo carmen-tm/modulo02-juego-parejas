@@ -22,9 +22,17 @@
   box-shadow: 5px 5px black;
   cursor: pointer;
 
+  position: relative;
+  z-index: +1;
+
+  &--hidden {
+    z-index: -1;
+  }
   &--face {
+    position: absolute;
+
     background-color: white;
-    display: none;
+    background-position: center;
   }
   &--back {
     background-image: url('https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB');

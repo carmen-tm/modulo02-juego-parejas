@@ -63,11 +63,18 @@ body {
   -webkit-box-shadow: 5px 5px black;
   box-shadow: 5px 5px black;
   cursor: pointer;
+  position: relative;
+  z-index: +1;
+}
+
+.card--hidden {
+  z-index: -1;
 }
 
 .card--face {
+  position: absolute;
   background-color: white;
-  display: none;
+  background-position: center;
 }
 
 .card--back {
