@@ -63,16 +63,13 @@ body {
   -webkit-box-shadow: 5px 5px black;
   box-shadow: 5px 5px black;
   cursor: pointer;
-  position: relative;
-  z-index: +1;
 }
 
 .card--hidden {
-  z-index: -1;
+  display: none;
 }
 
 .card--face {
-  position: absolute;
   background-color: white;
   background-position: center;
 }
@@ -80,6 +77,12 @@ body {
 .card--back {
   background-image: url("https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB");
   background-size: cover;
+}
+
+.eureka {
+  color: red;
+  text-align: center;
+  font-size: 28px;
 }
 
 /*# sourceMappingURL=main.css.map */
