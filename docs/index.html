@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"
+        />
+        <title>El juego de las Parejas</title>
+        <link rel="icon" href="favicon.png" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600"
+        />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    
+    <body>
+        <div class="page-container">
+            <header class="main-header">
+                 <h1 class="app-title">El juego de las parejas</h1>
+
+            </header>
+            <main class="main-container">
+                <form class="app-user-preferences">
+                    <label for="4" class="number-cards__label">4</label>
+                    <input type="radio" class="number-cards__button" id="4" name="number"
+                    checked />
+                    <label for="6" class="number-cards__label">6</label>
+                    <input type="radio" class="number-cards__button" id="6" name="number"
+                    />
+                    <label for="8" class="number-cards__label">8</label>
+                    <input type="radio" class="number-cards__button" id="8" name="number"
+                    />
+                    <button type="submit" autofocus>Comenzar</button>
+                </form>
+                <div class="app-results">
+                    <div class="card card--face">:)</div>
+                    <div class="card card--back"></div>
+                </div>
+            </main>
+            <footer class="main-footer"> <small class="app-credits">
+    2019 Carmen Torrecillas at Adalab
+  </small>
+
+            </footer>
+        </div>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+    </body>
+
+</html>
