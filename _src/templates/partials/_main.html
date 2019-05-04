@@ -1,21 +1,34 @@
 <main class="main-container">
   <form class="app-user-preferences">
-    <label for="4" class="number-cards__label">4</label>
+    <label for="input4" class="number-cards__label">4</label>
     <input
       type="radio"
       class="number-cards__button"
-      id="4"
+      id="input4"
       name="number"
+      data-number=4;
       checked
     />
-    <label for="6" class="number-cards__label">6</label>
-    <input type="radio" class="number-cards__button" id="6" name="number" />
-    <label for="8" class="number-cards__label">8</label>
-    <input type="radio" class="number-cards__button" id="8" name="number" />
-    <button type="submit" autofocus>Comenzar</button>
+    <label for="input6" class="number-cards__label">6</label>
+    <input
+      type="radio"
+      class="number-cards__button"
+      id="input6"
+      name="number"
+      data-number=6;
+    />
+    <label for="input8" class="number-cards__label">8</label>
+    <input
+      type="radio"
+      class="number-cards__button"
+      id="input8"
+      name="number"
+      data-number=8;
+    />
+    <button class="btn-start"" type="submit" autofocus>Comenzar</button>
   </form>
-  <div class="app-results">
-    <div class="card card--face">:)</div>
-    <div class="card card--back"></div>
-  </div>
+  <ul class="app-results">
+    <!-- <div class="card card--face">:)</div>
+    <div class="card card--back"></div> -->
+  </ul>
 </main>

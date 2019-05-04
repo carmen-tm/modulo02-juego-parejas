@@ -34,9 +34,22 @@ body {
   align-items: center;
 }
 
+.app-results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
 .card {
-  width: 160px;
-  height: 195px;
+  width: 80px;
+  height: 97.5px;
+  margin: 10px;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -54,10 +67,12 @@ body {
 
 .card--face {
   background-color: white;
+  display: none;
 }
 
 .card--back {
   background-image: url("https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB");
+  background-size: cover;
 }
 
 /*# sourceMappingURL=main.css.map */
