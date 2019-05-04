@@ -11,7 +11,6 @@ let cardsFromAPI = [];
 
 //Functions
 function drawCards(array) {
-  console.log('click');
   listResultsEl.innerHTML = '';
   //Paint as many cards as the user choice
   for (const element of array) {
@@ -45,14 +44,12 @@ function saveOnLS(key, value) {
 
 function retrieveFromLS(key) {
   const infoSavedOnLS = parseInt(localStorage.getItem(key));
-  console.log(infoSavedOnLS);
 
   if (infoSavedOnLS) {
     NUMBER = infoSavedOnLS;
     for (const element of inputsRadioEls) {
       const elementNumber = parseInt(element.getAttribute('data-number'));
       if (elementNumber === NUMBER) {
-        console.log(element);
         element.setAttribute('checked', 'true');
       }
     }
