@@ -20,6 +20,8 @@ function drawCards(array) {
     const { image, pair } = element;
 
     const itemEl = document.createElement('li');
+    itemEl.classList.add('item-card');
+
     const divFaceEl = document.createElement('div');
     divFaceEl.style.backgroundImage = `url(${image})`;
     divFaceEl.setAttribute('data-pair', pair);
@@ -35,62 +37,83 @@ function drawCards(array) {
 }
 
 function handlerCardsClick(event) {
-  const selectedCardEl = event.currentTarget;
-  selectedCardEl.classList.toggle('card--hidden');
+  const selectedItemEl = event.currentTarget;
+  const selectedCardFaceEl = selectedItemEl.firstChild;
+  selectedCardFaceEl.classList.toggle('card--hidden');
+  const selectedCardBackEl = selectedItemEl.lastChild;
+  selectedCardBackEl.classList.toggle('card--hidden');
 
-  const selectedCardFaceEl = selectedCardEl.previousSibling;
-  const selectedCardBackEl = selectedCardEl.nextSibling;
-
-  if (selectedCardFaceEl) {
-    selectedCardFaceEl.classList.toggle('card--hidden');
-  }
-  if (selectedCardBackEl) {
-    selectedCardBackEl.classList.toggle('card--hidden');
-  }
+  const selectedCardPairId = parseInt(
+    selectedItemEl.firstChild.getAttribute('data-pair')
+  );
 
   //Instructions just to be applied when one card is already up. Condition??
-  const cardsDown = [];
   const cardsUp = [];
-  const allCardsFaceEl = document.querySelectorAll('.card--face');
-  for (const card of allCardsFaceEl) {
+  const allCardsFaceEls = document.querySelectorAll('.card--face');
+
+  for (const card of allCardsFaceEls) {
     if (card.classList.contains('card--hidden')) {
-      cardsDown.push(card);
+      // console.log('card down');
     } else {
       cardsUp.push(card);
     }
   }
+  console.log(allCardsFaceEls);
+  console.log(cardsUp);
 
-  const cardsUpNow = NUMBER - cardsDown.length;
-  const selectedCardPairId = parseInt(
-    selectedCardFaceEl.getAttribute('data-pair')
-  );
+  const numberOfCardsUp = cardsUp.length;
+  console.log(numberOfCardsUp);
 
-  if (cardsUpNow === 1) {
+  if (numberOfCardsUp === 1) {
+    console.log(selectedCardPairId);
     pairCards = [];
     pairCards[0] = selectedCardPairId;
-    appMessageEl.innerHTML = '';
-    console.log(selectedCardPairId);
-  } else if (cardsUpNow === 2) {
+    appMessageEl.innerHTML = 'busca su pareja!!';
+  } else if (numberOfCardsUp === 2) {
     pairCards[1] = selectedCardPairId;
     console.log('solo hay una carta boca arriba');
     if (pairCards[0] === pairCards[1]) {
       //Print message on HTML
       appMessageEl.innerHTML = 'EUREKA!!!';
       appMessageEl.classList.add('eureka');
+      pairCards = [];
 
-      // for (const card of cardsUp) {
-      //   setInterval(card.classList.add('card--hidden'), 3000);
-      // }
-      console.dir(cardsDown);
-    } else {
-      appMessageEl.innerHTML = '';
-      console.log('no coinciden');
+      console.log(cardsUp);
+      for (const card of cardsUp) {
+        card.style.transform = 'scale(1.2)';
+        setInterval(function() {
+          card.classList.add('card--hidden');
+          card.nextSibling.classList.remove('card--hidden');
+          card.style.transform = 'scale(1)';
+          appMessageEl.innerHTML = '';
+          appMessageEl.classList.remove('eureka');
+        }, 3000);
+      }
+    } else if (numberOfCardsUp === 3) {
+      pairCards = [];
+      appMessageEl.innerHTML = 'upsss';
+      for (const card of cardsUp) {
+        setInterval(function() {
+          card.classList.add('card--hidden');
+          card.nextSibling.classList.remove('card--hidden');
+          appMessageEl.innerHTML = '';
+        }, 1000);
+        console.log('no coinciden');
+      }
     }
   } else {
-    console.log('más de una carta boca arriba');
+    pairCards = [];
+    appMessageEl.innerHTML = '';
+    for (const card of cardsUp) {
+      setInterval(function() {
+        card.classList.add('card--hidden');
+        card.nextSibling.classList.remove('card--hidden');
+        appMessageEl.innerHTML = '';
+      }, 1000);
+      console.log('más de una carta boca arriba');
+    }
   }
 }
-
 function requestApi(URL) {
   fetch(`${URL}`)
     .then(function(response) {
@@ -99,14 +122,12 @@ function requestApi(URL) {
     .then(function(responsedParsed) {
       cardsFromAPI = responsedParsed;
       drawCards(cardsFromAPI);
-      return cardsFromAPI;
-    })
-    .then(function(data) {
-      const cardsEls = document.querySelectorAll('.card');
-      for (const element of cardsEls) {
+
+      const cardsItemsEls = document.querySelectorAll('.item-card');
+      for (const element of cardsItemsEls) {
         element.addEventListener('click', handlerCardsClick);
       }
-      console.log(cardsFromAPI);
+      return cardsFromAPI;
     });
 }
 
